@@ -1,0 +1,14 @@
+# ---------- DATA ----------
+/data/**              # ignore everything…
+!data/example/**      # …except the tiny demo set
+*.tif                 # imaging tiles accidentally placed elsewhere
+*.xlsx
+*.csv
+*.npy                 # full training masks
+
+# ---------- NOTEBOOK NOISE ----------
+.ipynb_checkpoints/
+
+# ---------- OS CRUFT ----------
+.DS_Store
+Thumbs.db
