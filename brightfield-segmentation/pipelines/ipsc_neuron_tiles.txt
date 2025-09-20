@@ -1,0 +1,12 @@
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/neurite/W0001F0062T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/neurite/W0001F0132T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/neurite/W0001F0190T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/soma/W0001F0062T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/soma/W0001F0132T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/interim/soma/W0001F0190T0001Z001C1_seg.png
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0062T0001Z001C1.tif
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0062T0001Z001C2.tif
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0132T0001Z001C1.tif
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0132T0001Z001C2.tif
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0190T0001Z001C1.tif
+file:///Z:/Active_Users_Data/Neil/Analyses/Results/dry/xenium/vista-fish/brightfield-segmentation/data/example/raw/W0001F0190T0001Z001C2.tif
