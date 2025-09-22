@@ -1,0 +1,151 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scanpy as sc
+import squidpy as sq
+import numpy as np
+import pandas as pd
+import anndata as ad
+import scvelo as scv
+import pyensembl
+
+sc.settings.verbosity = 3  
+sc.logging.print_header()
+sc.settings.set_figure_params(dpi=100, facecolor="white")
+
+adata = sc.read_10x_h5(
+    filename="/nfs/turbo/umms-welchjd/javid/Xenium_Analysis/Untitled_Folder/SMAD.h5ad"
+)
+
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1  
+min_transcripts = 500  
+adata_subset = adata[adata.obs['n_counts'] >= min_transcripts].copy()
+print(f"Selected {adata_subset.n_obs} cells with >= {min_transcripts} transcripts.")
+
+sc.pp.normalize_total(adata_subset)
+sc.pp.log1p(adata_subset)
+sc.tl.pca(adata_subset)
+sc.pl.pca_variance_ratio(adata_subset, n_pcs=50, log=True)
+sc.pp.neighbors(adata_subset, n_neighbors=50, n_pcs=20)
+sc.tl.leiden(adata_subset, resolution=4.5, flavor="igraph", n_iterations=2, directed=False)
+sc.pl.umap(adata_subset, color='leiden', palette='viridis', legend_loc='on data')
+
+sc.tl.rank_genes_groups(adata_subset, groupby='leiden', method='wilcoxon')
+sc.pl.rank_genes_groups(adata_subset, n_genes=20, sharey=False)
+
+cluster_rename_map = {
+    '0': 'NPC',
+    '1': 'Radial Glia', 
+    '2': 'NPC',    
+    '3': 'Astrocytes',
+    '4': 'Astrocytes',
+    '5': 'Astrocytes',
+    '6': 'Astrocytes',  
+    '7': 'Neuronal Progenitors',
+    '8': 'Neuronal Progenitors',
+    '9': 'Neuronal Progenitors',
+    '10': 'NPC',
+    '11': 'Excitatory Neurons',
+    '12': 'NPC',
+    '13': 'Inhibitory Neurons',
+    '14': 'Excitatory Neurons',
+    '15': 'Excitatory Neurons',
+    '16': 'Excitatory Neurons',
+    '17': 'Inhibitory Neurons',
+    '18': 'Neuronal Progenitors',
+    '19': 'Glial Progenitors',
+    '20': 'Radial Glia',
+    '21': 'Astrocytes',
+    '22': 'Transitory Neural Cells',
+    '23': 'Radial Glia',
+    '24': 'Radial Glia',
+    '25': 'Glial Progenitors',
+    '26': 'Franken cells',
+    '27': 'Excitatory Neurons',
+    '28': 'Excitatory Neurons',
+    '29': 'Excitatory Neurons',
+    '30': 'Excitatory Neurons',
+    '31': 'Astrocytes',
+    '32': 'Astrocytes',
+    '33': 'Inhibitory Neurons',
+    '34': 'Cycling Radial Glia',
+    '35': 'Radial Glia',
+    '36': 'Cycling Radial Glia', 
+    '37': 'Transitory Neural Cells',
+    '38': 'Excitatory Neurons',
+    '39': 'Excitatory Neurons',
+    '40': 'Excitatory Neurons',
+    '41': 'Excitatory Neurons', 
+    '42': 'Inhibitory Neurons',
+    '43': 'Astrocytes'
+}
+
+adata_subset.obs['leiden_renamed_2'] = adata_subset.obs['leiden'].replace(cluster_rename_map)
+sc.pl.umap(adata_subset, color='leiden_renamed_2', palette='tab20')
+
+# Define receptor gene lists and plotting first few cell type markers
+genes = ['VGF', 'MAPT', 'SNAP25', 'SLC17A6', 'GRIN2B', 'GRIN1', 'GAD1', 'GAD2', 'EBF2', 'DCX', 'TCF4', 'CHD7', 'OLIG2', 'MCM7', 'NOTCH1', 'CCNB1', 'PAX6', 'BCAN', 'SOX2', 'NES', 'PEA15', 'FABP7', 'PTPRZ1', 'CDH2', 'AQP7', 'SLC17A5', 'SLC17A8']
+present_genes = [gene for gene in genes if gene in adata_subset.var_names]
+missing_genes = [gene for gene in genes if gene not in adata_subset.var_names]
+
+sc.pl.dotplot(adata_subset, var_names=present_genes, groupby='leiden_renamed_2', standard_scale='var')
+
+sc.pl.umap(adata_subset, color=['VGF'], color_map='twilight')
+sc.pl.umap(adata_subset, color=['PEA15'], color_map='twilight')
+sc.pl.umap(adata_subset, color=['GAD1'], color_map='twilight')
+
+
+# Adding spatial coords to adata
+spatial_coords = pd.read_csv("cells.csv", usecols=["cell_id", "x_centroid", "y_centroid"])
+spatial_coords.set_index("cell_id", inplace=True)
+adata_subset.obsm["spatial"] = spatial_coords.loc[adata_subset.obs.index, ["x_centroid", "y_centroid"]].values
+
+
+# Plotting location of cells on UMAP
+spatial_df = pd.DataFrame(
+    adata_subset.obsm['spatial'], 
+    index=adata_subset.obs_names, 
+    columns=['x_coord','y_coord']
+)
+cell_id = ['lilgmajo-1',
+ 'jdcicpnf-1',
+ 'bjfhkolo-1',
+ 'gldbahfl-1',
+ 'ffbmjlnl-1',
+ 'lfdkjppj-1',
+ 'liolkfbh-1',
+ 'mmgnhpgh-1',
+ 'lpfghkjd-1']
+coords = spatial_df.loc[cell_id]
+print(f"Cell {cell_id} is at x = {coords['x_coord']}, y = {coords['y_coord']}")
+
+xenium_cell_ids = ['lilgmajo-1', 'jdcicpnf-1', 'bjfhkolo-1', 'gldbahfl-1', 'ffbmjlnl-1', 'lfdkjppj-1', 'liolkfbh-1', 'mmgnhpgh-1', 'lpfghkjd-1']   
+cells_found = [cell for cell in xenium_cell_ids if cell in adata_subset.obs_names]
+
+if len(cells_found) == 0:
+    print("No cell IDs found in adata_subset.obs_names.")
+else:
+    adata = adata_subset[cells_found, :]
+    
+    print("UMAP coordinates")
+    print(adata.obsm['X_umap'])
+    plt.figure(figsize=(8, 6))
+    sc.pl.umap(adata_subset, show=False, color='leiden_renamed_2')
+    selected_umap = adata_subset.obsm['X_umap']
+    plt.scatter(selected_umap[:, 0], selected_umap[:, 1],
+                s=4, c='red', edgecolors='black')
+    plt.show()
+
+spatial_coords = pd.read_csv("cells.csv", usecols=["cell_id", "x_centroid", "y_centroid"])
+spatial_coords.set_index("cell_id", inplace=True)
+adata.obsm["spatial"] = spatial_coords.loc[adata.obs.index, ["x_centroid", "y_centroid"]].values
+
+sq.pl.spatial_scatter(
+    adata,
+    library_id="spatial",
+    shape=None,
+    color=[
+        "cell_type_final",
+    ],
+    wspace=0.4,
+    size=0.05, 
+)
