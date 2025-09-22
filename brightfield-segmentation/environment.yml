@@ -1,0 +1,15 @@
+name: bf_seg
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - cellpose[gui]
+      - notebook
+      - matplotlib
+      - tqdm
+      - imageio
+      - fastremap
+      - fill-voids
+      - natsort
