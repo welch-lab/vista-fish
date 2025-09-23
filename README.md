@@ -5,4 +5,15 @@ Scripts are grouped by datasets and functions. SMAD+GCAMP contains all preproces
 
 For each folder, users should begin with preprocessing, dimentionality reduction, and clustering of the dataset with the provided script and then move onto the analysis for each folder:
 1) SMAD+GCAMP:
+       -GCaMP_image_preprocess contains files on the calcium imaging/gcamp signal processing script as well as the stitching of the images
+       -Data_preprocess contains scripts for preprocessing of the SMAD dataset as well as the IF extractions and the nucleus and cytoplasm RNA                 extractions
+       -Contains scripts for generating Figures 3 and 4
+2) brightfield-segmentation:
+       -Contains all scripts, github page, demos, pipelines for the IF cell segmentations conducted with Cellpose and Cellprofiler
+3) iNeuron+Lysosome:
+       -BFP_image_preprocess contains the script on the xenium IF image stitching
+       -TrackMate_code contains scripts on utilizing trackmate in detecting and analyzing lysosomal movements
+       -Contains scripts on preprocessing of the perturbed iNeuron dataset as well as generating the plots and graphs in figure 6 of the paper
+
+
     
