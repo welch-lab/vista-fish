@@ -24,8 +24,8 @@ Figure4_LASSO.ipynb: prepare the genes used in LASSO regression, and check the p
 
 Figure4_LASSO.html: run LASSO regression using R
 
-Figure5_neurite_DEG.html: run GO analysis for the DEGs we found in neurites, and compare the UTR length of neurite DEGs and cell DEGs
+Figure5_neurite_DEG.html: run GO analysis for the DEGs we found in neurites, and compare the UTR length of neurite DEGs and cell DEGs using R
 
-Figure5_filament_DEG.html: run GO analysis for the DEGs we found in filament, and compare the UTR length of filament DEGs and cell DEGs
+Figure5_filament_DEG.html: run GO analysis for the DEGs we found in filament, and compare the UTR length of filament DEGs and cell DEGs using R
 
 FigureS3_neighboring_cells.ipynb: check the composition of cell types for neighboring cells, generate the plot used in Figure S3
