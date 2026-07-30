@@ -1,4 +1,4 @@
-# Arsenite-Treated Perturbed iNeuron Analysis
+# Arsenite-Treated + genetically perturbed + live-imaging (lysosome movement) + Xenium iNeuron Analysis
 
 This folder contains the code for arsenite-treated perturbed iNeuron data analysis.
 
