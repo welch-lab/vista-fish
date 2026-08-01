@@ -13,7 +13,7 @@ import os
 
 sc.settings.set_figure_params(dpi=300)
 
-data_dir = "/Users/javidghaemmaghami/Desktop/Welch_Lab/Xenium Project/gRNA Detection_round2/data_dir"
+data_dir = "../data_dir"
 adata = sc.read_10x_mtx(
     data_dir,
     var_names='gene_symbols',
