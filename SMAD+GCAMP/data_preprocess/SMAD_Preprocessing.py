@@ -13,7 +13,7 @@ sc.logging.print_header()
 sc.settings.set_figure_params(dpi=100, facecolor="white")
 
 adata = sc.read_10x_h5(
-    filename="/nfs/turbo/umms-welchjd/javid/Xenium_Analysis/Untitled_Folder/SMAD.h5ad"
+    filename="../SMAD.h5ad"
 )
 
 adata.obs['n_counts'] = adata.X.sum(axis=1).A1  
