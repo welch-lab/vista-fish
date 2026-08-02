@@ -1,4 +1,4 @@
-# Arsenite-Treated + CRISPRi screening + live-imaging (lysosome movement) + Xenium iNeuron Analysis
+# Arsenite Treatment + CRISPRi screening + live-imaging (lysosome movement) + Stress Granule Immunostaining + Xenium iNeuron Analysis
 
 Analysis code for a pooled CRISPRi screen in arsenite-treated iNeurons, with sgRNA detection by Xenium in situ imaging and stress granule immunostaining.
 
