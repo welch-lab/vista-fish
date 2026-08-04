@@ -49,7 +49,7 @@ filtered_transcripts = df_transcripts[
 filtered_transcripts['x_coord'] = filtered_transcripts['x_location']/0.2125
 filtered_transcripts['y_coord'] = filtered_transcripts['y_location']/0.2125
 filtered_transcripts['x'] = round(filtered_transcripts['x_coord']).astype(int)
-filtered_transcripts['y'] = round(filtered_transcripts['x_coord']).astype(int)
+filtered_transcripts['y'] = round(filtered_transcripts['y_coord']).astype(int)
 
 #get the high intensity pixels in Axon staining
 w1c2_image = np.load('path/to/axon/image/W1_C2.npy')
