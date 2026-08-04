@@ -1,4 +1,4 @@
-# VISTA-FISH
+# VISTA-FISH: Video Imaging with Spatial-Temporal Analysis by Fluorescent In Situ Hybridization
 Contains all scripts for datasets analysis from the VISTA-FISH protocol, as stated in the paper.
 
 Scripts are grouped by datasets and functions. SMAD+GCAMP contains all preprocessing, clustering, Calcium imaging, RNA velocity, and other analyses conducted on the SMAD neuron dataset. The iNeuron+Lysosome folder contains code that generated all of the data and figures in Figure 6 of the paper, such as the lysosome tracking and morphologies, along with the preprocessing and clustering of the perturbed iNeuron dataset. 
