@@ -23,3 +23,7 @@ assign_transcripts_to_cellpose_masks.ipynb: assign transcripts to the neuron seg
 Figure6_morphology_metrics.ipynb: compare the morphology metrics of each gene knockdown group with the negative control group
 
 Figure6_draw_morphology.ipynb: generate images of soma and neurite boundary outlines overlaid on brightfield images
+
+Figure6_BFP.ipynb, Figure6_lysosome_track_metrics.ipynb, Figure6_morphology_metrics.ipynb, and Perturbed_iNeuron_DEGs.py call a cell perturbed for a gene if any of that gene's sgRNA probes has a raw count > 1, excluding the two most abundant probes genome-wide (likely off-target/background).
+
+Figure6_lysosome_track_metrics.ipynb and Figure6_morphology_metrics.ipynb also report each metric's effect size as (perturbed mean - control mean) / pooled SD, alongside percent change.
